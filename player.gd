@@ -42,7 +42,6 @@ func _input(event):
 		virtual_stick_direction =  (event.position - virtual_stick_origin).normalized()
 		
 		
-	 # Replace with function body.
 func _on_player_area_entered(area):
 	health -= 1
 	get_node("../HUD/health").value = health
