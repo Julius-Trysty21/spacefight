@@ -28,7 +28,7 @@ motion_scale = Vector2( 0.5, 0.5 )
 motion_mirroring = Vector2( 15360, 15360 )
 
 [node name="stars_small_1024" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 7680, 7680 )
+position = Vector2( 7675, 7675 )
 scale = Vector2( 15, 15 )
 texture = ExtResource( 1 )
 
@@ -44,7 +44,7 @@ texture = ExtResource( 10 )
 
 [node name="player" type="Area2D" parent="."]
 light_mask = 3
-position = Vector2( 221.843, 301.443 )
+position = Vector2( 2266, 932 )
 collision_mask = 2
 script = ExtResource( 2 )
 __meta__ = {
@@ -93,10 +93,21 @@ drag_margin_bottom = 0.0
 [node name="enemies" type="Node2D" parent="."]
 
 [node name="enemy" parent="enemies" instance=ExtResource( 7 )]
-position = Vector2( 730.275, 278.006 )
+position = Vector2( 475, 1243 )
+
+[node name="enemy3" parent="enemies" instance=ExtResource( 7 )]
+position = Vector2( 2364, 1665 )
+VELOCITY = 1100.0
+
+[node name="enemy4" parent="enemies" instance=ExtResource( 7 )]
+position = Vector2( 2145, 219 )
+
+[node name="enemy5" parent="enemies" instance=ExtResource( 7 )]
+position = Vector2( 3623, 876 )
+FIRE_RATE = 0.02
 
 [node name="enemy2" parent="enemies" instance=ExtResource( 7 )]
-position = Vector2( 1470.28, 282.006 )
+position = Vector2( 349, 213 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
