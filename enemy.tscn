@@ -39,6 +39,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_group_": true
 }
+FIRE_RATE = 0.001
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fade = SubResource( 1 )

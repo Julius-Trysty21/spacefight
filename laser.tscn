@@ -32,14 +32,13 @@ scale = Vector2( 2.13736, 5.30441 )
 shape = SubResource( 1 )
 
 [node name="texture_laser" type="Sprite" parent="."]
-editor/display_folded = true
 light_mask = 0
 position = Vector2( 1818.4, 2.09485 )
 rotation = 1.5708
 scale = Vector2( 3.2794, 5.30441 )
 texture = ExtResource( 1 )
-vframes = 3
 hframes = 4
+vframes = 3
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="texture_laser"]
 autoplay = "laser"

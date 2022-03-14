@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://backgrounds/stars_small_1024.png" type="Texture" id=1]
 [ext_resource path="res://player.gd" type="Script" id=2]
@@ -6,10 +6,15 @@
 [ext_resource path="res://ships/redfighter.png" type="Texture" id=4]
 [ext_resource path="res://ships/redfighter_normal.png" type="Texture" id=5]
 [ext_resource path="res://audio/qubodup-crash.ogg" type="AudioStream" id=6]
-[ext_resource path="res://enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Enemy Spawner.gd" type="Script" id=7]
 [ext_resource path="res://white.png" type="Texture" id=8]
 [ext_resource path="res://interface/fonts/kenvector_future_32.tres" type="DynamicFont" id=9]
 [ext_resource path="res://backgrounds/stars_big_1024.png" type="Texture" id=10]
+[ext_resource path="res://enemy.tscn" type="PackedScene" id=11]
+[ext_resource path="res://laser.gd" type="Script" id=12]
+[ext_resource path="res://laser.tscn" type="PackedScene" id=13]
+[ext_resource path="res://2enemy.tscn" type="PackedScene" id=14]
+[ext_resource path="res://enemy_big.tscn" type="PackedScene" id=15]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.054902, 1, 0, 1 )
@@ -52,6 +57,9 @@ __meta__ = {
 }
 velocity = 1600
 
+[node name="laser" parent="player" instance=ExtResource( 13 )]
+script = ExtResource( 12 )
+
 [node name="CPUParticles2D" type="CPUParticles2D" parent="player"]
 position = Vector2( -100.306, 10.4972 )
 rotation = 3.14159
@@ -92,27 +100,27 @@ drag_margin_bottom = 0.0
 
 [node name="enemies" type="Node2D" parent="."]
 
-[node name="enemy" parent="enemies" instance=ExtResource( 7 )]
-position = Vector2( 475, 1243 )
+[node name="Enemy Spawner" type="Timer" parent="enemies"]
+autostart = true
+script = ExtResource( 7 )
+Enemy = ExtResource( 11 )
+MAX_SCORE = 10
 
-[node name="enemy3" parent="enemies" instance=ExtResource( 7 )]
-position = Vector2( 2364, 1665 )
-VELOCITY = 1100.0
+[node name="Enemy Spawner3" type="Timer" parent="enemies"]
+autostart = true
+script = ExtResource( 7 )
+Enemy = ExtResource( 15 )
+MAX_SCORE = 10
 
-[node name="enemy4" parent="enemies" instance=ExtResource( 7 )]
-position = Vector2( 2145, 219 )
-
-[node name="enemy5" parent="enemies" instance=ExtResource( 7 )]
-position = Vector2( 3623, 876 )
-FIRE_RATE = 0.02
-
-[node name="enemy2" parent="enemies" instance=ExtResource( 7 )]
-position = Vector2( 349, 213 )
+[node name="Enemy Spawner2" type="Timer" parent="enemies"]
+autostart = true
+script = ExtResource( 7 )
+Enemy = ExtResource( 14 )
+MIN_SCORE = 10
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="Light2D" type="Light2D" parent="HUD"]
-visible = false
 position = Vector2( 5120, 5120 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 8 )
@@ -154,3 +162,6 @@ custom_fonts/font = ExtResource( 9 )
 text = "0"
 
 [connection signal="area_entered" from="player" to="player" method="_on_player_area_entered"]
+[connection signal="timeout" from="enemies/Enemy Spawner" to="enemies/Enemy Spawner" method="_on_Enemy_Spawner_timeout"]
+[connection signal="timeout" from="enemies/Enemy Spawner3" to="enemies/Enemy Spawner3" method="_on_Enemy_Spawner_timeout"]
+[connection signal="timeout" from="enemies/Enemy Spawner2" to="enemies/Enemy Spawner2" method="_on_Enemy_Spawner_timeout"]
